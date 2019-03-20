@@ -57,7 +57,10 @@ export function translate(
   return token(text)
     .then((token: Token) => {
       const url =
-        "https://translate.google." + opts.tld + "/translate_a/single";
+        CORSService +
+        "https://translate.google." +
+        opts.tld +
+        "/translate_a/single";
       const data = {
         client: "gtx",
         sl: getCode(opts.from),
@@ -77,20 +80,16 @@ export function translate(
 
       if (fullUrl.length > 2083) {
         delete data.q;
-        return [
-          url + "?" + stringify(data),
-          { method: "post", body: { q: text } }
-        ];
+        return {
+          method: "post",
+          url: url + "?" + stringify(data),
+          data: { q: text }
+        };
       }
 
-      return [fullUrl, { method: "get" }];
+      return { url: fullUrl, method: "get" };
     })
-    .then((url: any) => {
-      const axiosConfig = {
-        method: url[1].method,
-        url: CORSService + url[0],
-        data: url[1].data || {}
-      };
+    .then((axiosConfig: { url: string; method: string; data?: any }) => {
       return (
         axios(axiosConfig)
           // .get(CORSService + url)
