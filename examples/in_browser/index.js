@@ -1,5 +1,5 @@
-import { setCORS } from "google-translate-api-browser";
-// import { setCORS } from "../../dist/index";
+// import { setCORS } from "google-translate-api-browser";
+import { setCORS } from "../../dist/index";
 
 // setting up cors-anywhere server address
 const translate = setCORS("http://cors-anywhere.herokuapp.com/");
@@ -10,8 +10,9 @@ const rBut = document.getElementById("root__button");
 
 rBut.onclick = e => {
   rTra.innerHTML = "...";
-  translate(rInp.value, { to: "en" })
+  translate(rInp.value, { to: "ru" })
     .then(res => {
+      console.log(res);
       rTra.innerHTML = res.text;
     })
     .catch(err => {

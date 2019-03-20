@@ -73,84 +73,91 @@ export function translate(
         q: text,
         [token.name]: token.value
       };
-      var fullUrl = url + "?" + stringify(data);
-      /*
-        if (fullUrl.length > 2083) {
-            delete data.q;
-            return [
-                url + '?' + stringify(data),
-                {method: 'POST', body: {q: text}}
-            ];
-        }
-        */
-      return fullUrl;
+      const fullUrl = url + "?" + stringify(data);
+
+      if (fullUrl.length > 2083) {
+        delete data.q;
+        return [
+          url + "?" + stringify(data),
+          { method: "post", body: { q: text } }
+        ];
+      }
+
+      return [fullUrl, { method: "get" }];
     })
-    .then(url => {
-      return axios
-        .get(CORSService + url)
-        .then(res_ => {
-          const res = {
-            body: JSON.stringify(res_.data)
-          };
-          const result = {
-            text: "",
-            pronunciation: "",
-            from: {
-              language: {
-                didYouMean: false,
-                iso: ""
+    .then((url: any) => {
+      const axiosConfig = {
+        method: url[1].method,
+        url: CORSService + url[0],
+        data: url[1].data || {}
+      };
+      return (
+        axios(axiosConfig)
+          // .get(CORSService + url)
+          .then(res_ => {
+            console.log(res_);
+            const res = {
+              body: JSON.stringify(res_.data)
+            };
+            const result = {
+              text: "",
+              pronunciation: "",
+              from: {
+                language: {
+                  didYouMean: false,
+                  iso: ""
+                },
+                text: {
+                  autoCorrected: false,
+                  value: "",
+                  didYouMean: false
+                }
               },
-              text: {
-                autoCorrected: false,
-                value: "",
-                didYouMean: false
+              raw: opts.raw ? res.body : ""
+            };
+
+            const body = JSON.parse(res.body);
+            body[0].forEach((obj: any) => {
+              if (obj[0]) {
+                result.text += obj[0];
+              } else if (obj[2]) {
+                result.pronunciation += obj[2];
               }
-            },
-            raw: opts.raw ? res.body : ""
-          };
+            });
 
-          const body = JSON.parse(res.body);
-
-          body[0].forEach((obj: any) => {
-            if (obj[0]) {
-              result.text += obj[0];
-            } else if (obj[2]) {
-              result.pronunciation += obj[2];
-            }
-          });
-
-          if (body[2] === body[8][0][0]) {
-            result.from.language.iso = body[2];
-          } else {
-            result.from.language.didYouMean = true;
-            result.from.language.iso = body[8][0][0];
-          }
-
-          if (body[7] && body[7][0]) {
-            let str = body[7][0];
-
-            str = str.replace(/<b><i>/g, "[");
-            str = str.replace(/<\/i><\/b>/g, "]");
-
-            result.from.text.value = str;
-
-            if (body[7][5] === true) {
-              result.from.text.autoCorrected = true;
+            if (body[2] === body[8][0][0]) {
+              result.from.language.iso = body[2];
             } else {
-              result.from.text.didYouMean = true;
+              result.from.language.didYouMean = true;
+              result.from.language.iso = body[8][0][0];
             }
-          }
-          return result;
-        })
-        .catch(err => {
-          const e: Error = new Error();
-          if (err.statusCode !== undefined && err.statusCode !== 200) {
-            e.message = "BAD_REQUEST";
-          } else {
-            e.message = "BAD_NETWORK";
-          }
-          throw e;
-        });
+
+            if (body[7] && body[7][0]) {
+              let str = body[7][0];
+
+              str = str.replace(/<b><i>/g, "[");
+              str = str.replace(/<\/i><\/b>/g, "]");
+
+              result.from.text.value = str;
+
+              if (body[7][5] === true) {
+                result.from.text.autoCorrected = true;
+              } else {
+                result.from.text.didYouMean = true;
+              }
+            }
+            return result;
+          })
+          .catch(err => {
+            const e: Error = new Error();
+            if (err.statusCode !== undefined && err.statusCode !== 200) {
+              e.message = "BAD_REQUEST";
+            } else {
+              e.message = "BAD_NETWORK";
+            }
+            throw e;
+          })
+      );
     });
 }
 
