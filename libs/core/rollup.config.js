@@ -8,7 +8,7 @@ export default {
   output: [
     {
       // 打包名称
-      file: './dist/index.ts',
+      file: './dist/index.js',
       format: 'cjs',
     },
     {

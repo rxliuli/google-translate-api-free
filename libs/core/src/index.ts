@@ -14,7 +14,7 @@ function token(text: string) {
   })
 }
 
-interface TranslateOptions {
+export interface TranslateOptions {
   from: Lang
   to: Lang
   hl: string
@@ -22,7 +22,7 @@ interface TranslateOptions {
   tld: string
 }
 
-interface TranslateResult {
+export interface TranslateResult {
   text: string
   from: {
     language: {
