@@ -1,18 +1,19 @@
 {
   "name": "in_browser",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html --public-url ."
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html --public-url ."
   },
   "license": "MIT",
   "devDependencies": {
     "parcel-bundler": "^1.11.0"
   },
   "dependencies": {
-    "google-translate-api-browser": "latest",
+    "google-translate-api-browser": "*",
     "querystring": "^0.2.0",
-    "typescript": "^3.3.3333"
+    "typescript": "^4.1.3",
+    "axios": "^0.21.1"
   }
 }

@@ -1,0 +1,40 @@
+{
+  "name": "google-translate-api-browser",
+  "version": "1.1.71",
+  "description": "A free and unlimited API for Google Translate that works in browser",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cjvnjde/google-translate-api-browser"
+  },
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "keywords": [
+    "translate",
+    "translator",
+    "google",
+    "translate",
+    "api",
+    "free",
+    "language"
+  ],
+  "author": {
+    "name": "Matheus Fernandes",
+    "email": "npm@matheus.top",
+    "url": "http://matheus.top"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "querystring": "^0.2.0"
+  },
+  "devDependencies": {
+    "rollup": "^2.36.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.29.0",
+    "typescript": "^4.1.3"
+  }
+}

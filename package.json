@@ -1,36 +1,38 @@
 {
-  "name": "google-translate-api-browser",
-  "version": "1.1.71",
-  "description": "A free and unlimited API for Google Translate that works in browser",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cjvnjde/google-translate-api-browser"
-  },
-  "scripts": {
-    "build": "tsc --declaration"
-  },
-  "keywords": [
-    "translate",
-    "translator",
-    "google",
-    "translate",
-    "api",
-    "free",
-    "language"
-  ],
-  "author": {
-    "name": "Matheus Fernandes",
-    "email": "npm@matheus.top",
-    "url": "http://matheus.top"
-  },
+  "name": "google-translate-api-browser-all",
+  "version": "0.0.1",
+  "private": true,
+  "repository": "https://github.com/rxliuli/google-translate-api-browser.git",
   "license": "MIT",
-  "dependencies": {
-    "axios": "^0.19.0",
-    "querystring": "^0.2.0"
+  "scripts": {
+    "setup": "npx lerna bootstrap && yarn pub",
+    "fix:version": "syncpack fix-mismatches",
+    "clean": "npx lerna clean",
+    "pub": "npx lerna run pub",
+    "clean:pkg": "npx lerna bootstrap && yarn clean"
   },
   "devDependencies": {
-    "typescript": "^3.3.3333"
+    "husky": "^4.3.0",
+    "lint-staged": "^10.5.1",
+    "prettier": "^2.2.1",
+    "syncpack": "^5.6.10",
+    "typescript": "^4.1.2"
+  },
+  "workspaces": {
+    "packages": [
+      "libs/*",
+      "examples/*"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,css,md,json}": [
+      "prettier --ignore-path .eslintignore --write",
+      "git add"
+    ]
   }
 }
