@@ -12,6 +12,10 @@
     "build": "liuli-cli build",
     "pub": "liuli-cli clean && yarn build"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "keywords": [
     "translate",
     "translator",
