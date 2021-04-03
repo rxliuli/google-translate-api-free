@@ -1,7 +1,6 @@
-import { stringify } from 'querystring'
+import { stringify } from 'query-string'
 import sM from './sM'
 import { getCode, isSupported, Lang } from './languages'
-import type { AxiosResponse } from 'axios'
 
 interface Token {
   name: string
@@ -38,8 +37,12 @@ export interface TranslateResult {
   raw: string
 }
 
+export interface ITranslatorHandler {
+  handle<T>(url: string): Promise<T>
+}
+
 export class Translator {
-  constructor(private handler: <T>(url: string) => Promise<AxiosResponse<T>>) {}
+  constructor(private handler: ITranslatorHandler) {}
 
   // function translate(text: string, to: string, from: string, tld: string) {
   translate(
@@ -90,10 +93,11 @@ export class Translator {
         return url + '?' + stringify(data)
       })
       .then((url) => {
-        return this.handler(url)
-          .then((res_: any) => {
+        return this.handler
+          .handle(url)
+          .then((data: any) => {
             const res = {
-              body: JSON.stringify(res_.data),
+              body: JSON.stringify(data),
             }
             const result = {
               text: '',

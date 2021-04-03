@@ -2,11 +2,19 @@
 
 import readline from 'readline'
 import axios from 'axios'
-import { Translator } from 'google-translate-api-browser'
+import { ITranslatorHandler, Translator } from 'google-translate-api-browser'
 
-const translator = new Translator(async (url) => {
-  return axios.get(url)
-})
+class TranslatorHandler implements ITranslatorHandler {
+  constructor() {
+    axios.defaults.adapter = require('axios/lib/adapters/http')
+  }
+
+  async handle<T>(url: string): Promise<T> {
+    return (await axios.get<T>(url)).data
+  }
+}
+
+const translator = new Translator(new TranslatorHandler())
 const rl = readline.createInterface(process.stdin, process.stdout)
 rl.setPrompt('translate > ')
 rl.prompt()

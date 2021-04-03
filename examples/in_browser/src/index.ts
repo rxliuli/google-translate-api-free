@@ -1,14 +1,18 @@
 // setting up cors-anywhere server address
-import { Translator } from 'google-translate-api-browser'
+import { ITranslatorHandler, Translator } from 'google-translate-api-browser'
 import axios from 'axios'
 
 const rInp = document.getElementById('root__input') as HTMLInputElement
 const rTra = document.getElementById('translated') as HTMLDivElement
 const rBut = document.getElementById('root__button') as HTMLButtonElement
 
-const translator = new Translator(async (url) => {
-  return axios.get('http://cors-anywhere.herokuapp.com/' + url)
-})
+class TranslatorHandler implements ITranslatorHandler {
+  async handle<T>(url: string): Promise<T> {
+    return (await axios.get('http://cors-anywhere.herokuapp.com/' + url)).data
+  }
+}
+
+const translator = new Translator(new TranslatorHandler())
 
 rBut.addEventListener('click', () => {
   rTra.innerHTML = '...'
