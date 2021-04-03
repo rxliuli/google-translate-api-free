@@ -1,0 +1,33 @@
+{
+  "name": "@liuli-util/google-translate-api-free-adapter-nodejs",
+  "version": "1.1.71",
+  "description": "用于适配",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "jest": {
+    "preset": "ts-jest"
+  },
+  "scripts": {
+    "build": "liuli-cli build",
+    "pub": "liuli-cli clean && yarn build"
+  },
+  "keywords": [
+    "translate",
+    "translator",
+    "google",
+    "translate",
+    "api",
+    "free",
+    "language"
+  ],
+  "author": {
+    "name": "Matheus Fernandes",
+    "email": "npm@matheus.top",
+    "url": "http://matheus.top"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
