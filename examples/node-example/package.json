@@ -8,8 +8,8 @@
     "start": "ts-node src/index.ts"
   },
   "dependencies": {
-    "@liuli-util/google-translate-api-free": "*",
-    "@liuli-util/google-translate-api-free-nodejs-adapter": "*"
+    "@liuli-util/google-translate-api-free": "^0.1.0",
+    "@liuli-util/google-translate-api-free-nodejs-adapter": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^12.19.15",
