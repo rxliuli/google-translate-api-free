@@ -1,6 +1,7 @@
 {
-  "name": "in_browser",
-  "version": "1.0.0",
+  "name": "browser-example",
+  "version": "0.1.0",
+  "private": true,
   "main": "src/index.ts",
   "scripts": {
     "start": "parcel src/index.html",

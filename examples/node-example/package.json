@@ -1,6 +1,7 @@
 {
-  "name": "in_node",
-  "version": "1.0.0",
+  "name": "node-example",
+  "version": "0.1.0",
+  "private": true,
   "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
@@ -8,7 +9,7 @@
   },
   "dependencies": {
     "@liuli-util/google-translate-api-free": "*",
-    "axios": "^0.21.1"
+    "@liuli-util/google-translate-api-free-nodejs-adapter": "*"
   },
   "devDependencies": {
     "@types/node": "^12.19.15",

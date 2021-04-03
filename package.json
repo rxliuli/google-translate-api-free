@@ -1,15 +1,13 @@
 {
-  "name": "@liuli-util/google-translate-api-all",
+  "name": "@liuli-util/google-translate-api-free-all",
   "version": "0.0.1",
   "private": true,
   "repository": "https://github.com/rxliuli/google-translate-api-browser.git",
   "license": "MIT",
   "scripts": {
-    "setup": "npx lerna bootstrap && yarn pub",
+    "setup": "yarn && lerna run pub && yarn",
     "fix:version": "syncpack fix-mismatches",
-    "clean": "npx lerna clean",
-    "pub": "npx lerna run pub",
-    "clean:pkg": "npx lerna bootstrap && yarn clean"
+    "clean:pkg": "lerna clean"
   },
   "prettier": {
     "tabWidth": 2,

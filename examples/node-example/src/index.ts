@@ -1,23 +1,10 @@
 // var { translate } = require("../../dist/index");
 
 import readline from 'readline'
-import axios from 'axios'
-import {
-  ITranslatorHandler,
-  Translator,
-} from '@liuli-util/google-translate-api-free'
+import { Translator } from '@liuli-util/google-translate-api-free'
+import { TranslatorHandlerWithNodejs } from '@liuli-util/google-translate-api-free-nodejs-adapter'
 
-class TranslatorHandler implements ITranslatorHandler {
-  constructor() {
-    axios.defaults.adapter = require('axios/lib/adapters/http')
-  }
-
-  async handle<T>(url: string): Promise<T> {
-    return (await axios.get<T>(url)).data
-  }
-}
-
-const translator = new Translator(new TranslatorHandler())
+const translator = new Translator(new TranslatorHandlerWithNodejs())
 const rl = readline.createInterface(process.stdin, process.stdout)
 rl.setPrompt('translate > ')
 rl.prompt()

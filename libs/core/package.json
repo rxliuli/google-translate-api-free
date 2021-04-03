@@ -1,14 +1,10 @@
 {
   "name": "@liuli-util/google-translate-api-free",
-  "version": "1.1.71",
+  "version": "0.1.0",
   "description": "A free and unlimited API for Google Translate that works in browser",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cjvnjde/google-translate-api-browser"
-  },
   "jest": {
     "preset": "ts-jest"
   },
@@ -32,7 +28,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.21.1",
     "query-string": "^7.0.0"
   }
 }

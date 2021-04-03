@@ -1,6 +1,6 @@
 {
-  "name": "@liuli-util/google-translate-api-free-adapter-nodejs",
-  "version": "1.1.71",
+  "name": "@liuli-util/google-translate-api-free-nodejs-adapter",
+  "version": "0.1.0",
   "description": "用于适配",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
