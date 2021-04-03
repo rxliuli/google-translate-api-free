@@ -7,7 +7,7 @@
     "start": "ts-node src/index.ts"
   },
   "dependencies": {
-    "google-translate-api-browser": "*",
+    "@liuli-util/google-translate-api-free": "*",
     "axios": "^0.21.1"
   },
   "devDependencies": {

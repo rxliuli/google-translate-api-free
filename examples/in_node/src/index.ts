@@ -2,7 +2,10 @@
 
 import readline from 'readline'
 import axios from 'axios'
-import { ITranslatorHandler, Translator } from 'google-translate-api-browser'
+import {
+  ITranslatorHandler,
+  Translator,
+} from '@liuli-util/google-translate-api-free'
 
 class TranslatorHandler implements ITranslatorHandler {
   constructor() {

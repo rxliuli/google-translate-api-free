@@ -1,5 +1,8 @@
 // setting up cors-anywhere server address
-import { ITranslatorHandler, Translator } from 'google-translate-api-browser'
+import {
+  ITranslatorHandler,
+  Translator,
+} from '@liuli-util/google-translate-api-free'
 import axios from 'axios'
 
 const rInp = document.getElementById('root__input') as HTMLInputElement
