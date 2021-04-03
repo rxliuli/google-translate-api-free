@@ -1,5 +1,5 @@
 {
-  "name": "google-translate-api-browser-all",
+  "name": "@liuli-util/google-translate-api-all",
   "version": "0.0.1",
   "private": true,
   "repository": "https://github.com/rxliuli/google-translate-api-browser.git",
@@ -11,11 +11,23 @@
     "pub": "npx lerna run pub",
     "clean:pkg": "npx lerna bootstrap && yarn clean"
   },
+  "prettier": {
+    "tabWidth": 2,
+    "printWidth": 80,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "always",
+    "endOfLine": "lf"
+  },
   "devDependencies": {
     "husky": "^4.3.0",
     "lint-staged": "^10.5.1",
     "prettier": "^2.2.1",
     "syncpack": "^5.6.10",
+    "@types/jest": "^26.0.22",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.4",
     "typescript": "^4.1.2"
   },
   "workspaces": {
@@ -34,10 +46,5 @@
       "prettier --ignore-path .eslintignore --write",
       "git add"
     ]
-  },
-  "dependencies": {
-    "@types/jest": "^26.0.22",
-    "jest": "^26.6.3",
-    "ts-jest": "^26.5.4"
   }
 }

@@ -13,8 +13,8 @@
     "preset": "ts-jest"
   },
   "scripts": {
-    "build": "rollup -c",
-    "pub": "rimraf dist && yarn build"
+    "build": "liuli-cli build",
+    "pub": "liuli-cli clean && yarn build"
   },
   "keywords": [
     "translate",
@@ -34,12 +34,5 @@
   "dependencies": {
     "axios": "^0.21.1",
     "query-string": "^7.0.0"
-  },
-  "devDependencies": {
-    "rimraf": "^3.0.2",
-    "rollup": "^2.36.1",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.29.0",
-    "typescript": "^4.1.3"
   }
 }
