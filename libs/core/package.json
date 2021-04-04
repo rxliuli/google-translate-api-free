@@ -1,7 +1,7 @@
 {
   "name": "@liuli-util/google-translate-api-free",
   "version": "0.1.0",
-  "description": "A free and unlimited API for Google Translate that works in browser",
+  "description": "免费的 Google 翻译 API（基于网页版）",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -15,6 +15,10 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "url": "https://github.com/rxliuli/google-translate-api-browser",
+    "type": "git"
   },
   "keywords": [
     "translate",

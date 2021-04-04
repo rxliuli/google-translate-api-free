@@ -1,7 +1,7 @@
 {
   "name": "@liuli-util/google-translate-api-free-nodejs-adapter",
   "version": "0.1.0",
-  "description": "用于适配",
+  "description": "nodejs 环境的请求适配器",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -11,6 +11,10 @@
   "scripts": {
     "build": "liuli-cli build",
     "pub": "liuli-cli clean && yarn build"
+  },
+  "repository": {
+    "url": "https://github.com/rxliuli/google-translate-api-browser",
+    "type": "git"
   },
   "publishConfig": {
     "access": "public",
