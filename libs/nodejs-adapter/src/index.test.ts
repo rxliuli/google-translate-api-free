@@ -1,4 +1,3 @@
-import * as console from 'console'
 import { TranslatorHandlerWithNodejs } from './index'
 import { Translator } from '@liuli-util/google-translate-api-free'
 
