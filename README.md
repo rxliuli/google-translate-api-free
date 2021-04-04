@@ -11,7 +11,7 @@ yarn add @liuli-util/google-translate-api-free
 
 ### For node
 
-> ref: [browser-example](https://github.com/rxliuli/google-translate-api-browser/tree/master/examples/node-example)
+> ref: [node-example](https://github.com/rxliuli/google-translate-api-browser/tree/master/examples/node-example)
 
 ```sh
 yarn add @liuli-util/google-translate-api-free-nodejs-adapter
