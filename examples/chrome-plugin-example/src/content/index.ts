@@ -9,11 +9,11 @@ Reflect.set(window, 'DOMEditorUtil', DOMEditorUtil)
 document.addEventListener('keydown', async (e) => {
   if (e.altKey && e.key === 't') {
     const text = DOMEditorUtil.getSelect()
-    const target = e.target
-    console.log('keydown: ', text, target)
+    // const target = e.target
+    // console.log('keydown: ', text, target)
     if (
-      (!(target instanceof HTMLInputElement) &&
-        !(target instanceof HTMLTextAreaElement)) ||
+      // (!(target instanceof HTMLInputElement) &&
+      //   !(target instanceof HTMLTextAreaElement)) ||
       text === null
     ) {
       return
@@ -23,6 +23,6 @@ document.addEventListener('keydown', async (e) => {
       data: [text, { from: 'auto', to: 'en' }] as ActionType['translate'],
     })
     console.log('translate resp: ', resp.text)
-    DOMEditorUtil.replaceSelect(resp.text)
+    await DOMEditorUtil.writeClipboard(resp.text)
   }
 })

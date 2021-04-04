@@ -21,7 +21,18 @@ browser.runtime.onMessage.addListener(
     console.log('onMessage: ', message)
     switch (message.action) {
       case 'translate':
-        return await translator.translate(message.data[0], message.data[1])
+        const resp = await translator.translate(
+          message.data[0],
+          message.data[1],
+        )
+        await browser.notifications.create({
+          type: 'basic',
+          iconUrl:
+            'https://raw.githubusercontent.com/rxliuli/google-translate-api-browser/1acd03721eaea0e59b7289cd7fd5b8b463c0014a/examples/chrome-plugin-example/src/public/icon-48.png',
+          title: 'translate-chrome-plugin',
+          message: '翻译完成: ' + resp.text,
+        })
+        return resp
       default:
         break
     }

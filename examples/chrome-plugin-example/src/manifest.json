@@ -1,5 +1,5 @@
 {
-  "permissions": [],
+  "permissions": ["clipboardWrite", "notifications"],
   "background": {
     "scripts": ["background/index.ts"]
   },

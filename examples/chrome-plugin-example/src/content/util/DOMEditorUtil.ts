@@ -25,4 +25,8 @@ export class DOMEditorUtil {
 
     // console.log('paste: ', document.execCommand('paste', false, text))
   }
+
+  static async writeClipboard(text: string) {
+    await navigator.clipboard.writeText(text)
+  }
 }
