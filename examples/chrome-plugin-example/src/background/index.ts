@@ -1,40 +1,42 @@
 import {
   ITranslatorHandler,
+  TranslateResult,
   Translator,
 } from '@liuli-util/google-translate-api-free'
-import axios from 'axios'
-import { ActionType } from './model/ActionType'
+import { ControllerRegister } from '../common/util/MessageHandler'
 
 class TranslatorHandler implements ITranslatorHandler {
   async handle<T>(url: string): Promise<T> {
-    return (await axios.get<T>(url)).data
+    return (await fetch(url)).json()
   }
 }
 
-const translator = new Translator(new TranslatorHandler())
+export interface IBasicProvider {
+  translate(
+    ...args: Parameters<Translator['translate']>
+  ): Promise<TranslateResult>
+
+  notify(
+    options: Parameters<typeof browser.notifications.create>[1],
+  ): Promise<string>
+}
+
+class BasicProvider implements IBasicProvider {
+  notify(
+    options: Parameters<typeof browser.notifications.create>[1],
+  ): Promise<string> {
+    return browser.notifications.create(options)
+  }
+
+  private translator = new Translator(new TranslatorHandler())
+
+  translate(
+    ...[text, options]: Parameters<Translator['translate']>
+  ): Promise<TranslateResult> {
+    return this.translator.translate(text, options)
+  }
+}
 
 browser.runtime.onMessage.addListener(
-  async <K extends keyof ActionType>(message: {
-    action: K
-    data: ActionType[K]
-  }): Promise<any> => {
-    console.log('onMessage: ', message)
-    switch (message.action) {
-      case 'translate':
-        const resp = await translator.translate(
-          message.data[0],
-          message.data[1],
-        )
-        await browser.notifications.create({
-          type: 'basic',
-          iconUrl:
-            'https://raw.githubusercontent.com/rxliuli/google-translate-api-browser/1acd03721eaea0e59b7289cd7fd5b8b463c0014a/examples/chrome-plugin-example/src/public/icon-48.png',
-          title: 'translate-chrome-plugin',
-          message: '翻译完成: ' + resp.text,
-        })
-        return resp
-      default:
-        break
-    }
-  },
+  new ControllerRegister().register(BasicProvider).getListener(),
 )
