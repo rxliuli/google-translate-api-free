@@ -11,7 +11,7 @@ yarn add @liuli-util/google-translate-api-free
 
 ### For node
 
-> ref: [node-example](https://github.com/rxliuli/google-translate-api-browser/tree/master/examples/node-example)
+> ref: [node-example](https://github.com/rxliuli/google-translate-api-free/tree/master/examples/node-example)
 
 ```sh
 yarn add @liuli-util/google-translate-api-free-nodejs-adapter
@@ -35,7 +35,7 @@ it('基本示例', async () => {
 
 ### For browser
 
-> ref: [browser-example](https://github.com/rxliuli/google-translate-api-browser/tree/master/examples/browser-example)
+> ref: [browser-example](https://github.com/rxliuli/google-translate-api-free/tree/master/examples/browser-example)
 
 For cross origin requests it uses [cors-anywhere
 ](https://github.com/Rob--W/cors-anywhere). You can use public cors-anywhere
