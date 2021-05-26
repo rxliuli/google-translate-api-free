@@ -35,7 +35,10 @@
     "url": "http://matheus.top"
   },
   "license": "MIT",
+  "devDependencies": {
+    "@types/qs": "^6.9.6"
+  },
   "dependencies": {
-    "query-string": "^7.0.0"
+    "qs": "^6.10.1"
   }
 }

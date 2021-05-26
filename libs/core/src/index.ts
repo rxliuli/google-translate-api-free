@@ -1,6 +1,6 @@
-import { stringify } from 'query-string'
 import sM from './sM'
 import { getCode, isSupported, Lang } from './languages'
+import { stringify } from 'qs'
 
 interface Token {
   name: string
@@ -90,7 +90,9 @@ export class Translator {
     }
 
     try {
-      const resp = await this.handler.handle(url + '?' + stringify(data))
+      const resp = await this.handler.handle(
+        url + '?' + stringify(data, { arrayFormat: 'repeat' }),
+      )
       const res = {
         body: JSON.stringify(resp),
       }
