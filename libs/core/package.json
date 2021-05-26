@@ -1,6 +1,6 @@
 {
   "name": "@liuli-util/google-translate-api-free",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "免费的 Google 翻译 API（基于网页版）",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
