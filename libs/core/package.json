@@ -1,23 +1,27 @@
 {
   "name": "@liuli-util/google-translate-api-free",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "免费的 Google 翻译 API（基于网页版）",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "type": "module",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
   "jest": {
     "preset": "ts-jest"
   },
   "scripts": {
-    "build": "liuli-cli build",
-    "pub": "liuli-cli clean && yarn build"
+    "build": "tsup src/index.ts --format esm,cjs --dts --target esnext"
   },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "repository": {
-    "url": "https://github.com/rxliuli/google-translate-api-browser",
+    "url": "https://github.com/rxliuli/google-translate-api-free",
     "type": "git"
   },
   "keywords": [
@@ -36,9 +40,8 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/qs": "^6.9.6"
-  },
-  "dependencies": {
-    "qs": "^6.10.1"
+    "@types/node": "^18.11.17",
+    "tsup": "^6.5.0",
+    "typescript": "^4.1.3"
   }
 }

@@ -1,18 +1,17 @@
-import axios from 'axios'
 import * as console from 'console'
 import { ITranslatorHandler, Translator } from './index'
 
-describe('测试 translate', () => {
-  class TranslatorHandler implements ITranslatorHandler {
-    constructor() {
-      axios.defaults.adapter = require('axios/lib/adapters/http')
-    }
-
-    async handle<T>(url: string): Promise<T> {
-      return (await axios.get<T>(url)).data
-    }
+class TranslatorHandler implements ITranslatorHandler {
+  async handle<T>(url: string): Promise<T> {
+    const resp = await fetch(url, {
+      method: 'get',
+    })
+    const r = await resp.json()
+    return r as T
   }
+}
 
+describe('测试 translate', () => {
   const translator = new Translator(new TranslatorHandler())
 
   it('基本示例', async () => {

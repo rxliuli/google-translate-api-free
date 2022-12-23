@@ -1,6 +1,5 @@
 import sM from './sM'
 import { getCode, isSupported, Lang } from './languages'
-import { stringify } from 'qs'
 
 interface Token {
   name: string
@@ -90,9 +89,15 @@ export class Translator {
     }
 
     try {
-      const resp = await this.handler.handle(
-        url + '?' + stringify(data, { arrayFormat: 'repeat' }),
-      )
+      const usp = new URLSearchParams()
+      Object.entries(data).forEach(([k, v]) => {
+        if (Array.isArray(v)) {
+          v.forEach((item) => usp.append(k, item))
+        } else {
+          usp.set(k, String(v))
+        }
+      })
+      const resp = await this.handler.handle(url + '?' + usp.toString())
       const res = {
         body: JSON.stringify(resp),
       }
@@ -147,7 +152,10 @@ export class Translator {
       return result
     } catch (err) {
       const e: Error = new Error()
-      if (err.statusCode !== undefined && err.statusCode !== 200) {
+      if (
+        (err as any).statusCode !== undefined &&
+        (err as any).statusCode !== 200
+      ) {
         e.message = 'BAD_REQUEST'
       } else {
         e.message = 'BAD_NETWORK'

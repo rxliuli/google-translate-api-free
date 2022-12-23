@@ -5,7 +5,6 @@
   "repository": "https://github.com/rxliuli/google-translate-api-browser.git",
   "license": "MIT",
   "scripts": {
-    "setup": "yarn && lerna run pub && yarn",
     "fix:version": "syncpack fix-mismatches",
     "clean:pkg": "lerna clean",
     "gen:readme": "gulp generateReadmes"
@@ -25,25 +24,18 @@
     "@types/jest": "^26.0.22",
     "fs-extra": "^9.1.0",
     "gulp": "^4.0.2",
-    "husky": "^4.3.0",
     "jest": "^26.6.3",
     "lint-staged": "^10.5.1",
     "prettier": "^2.2.1",
     "syncpack": "^5.6.10",
     "ts-jest": "^26.5.4",
-    "type-fest": "^1.0.1",
-    "typescript": "^4.1.2"
+    "type-fest": "^1.0.1"
   },
   "workspaces": {
     "packages": [
       "libs/*",
       "examples/*"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.{ts,tsx,css,md,json}": [
